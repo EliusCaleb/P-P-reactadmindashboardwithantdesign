@@ -1,8 +1,11 @@
 import React from 'react'
+import { Typography } from 'antd'
 
 const Inventory = () => {
   return (
-    <div>Inventory</div>
+    <div>
+        <Typography.Title level={4}>Inventory </Typography.Title>
+    </div>
   )
 }
 
