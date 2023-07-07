@@ -10,7 +10,7 @@ const AppHeader = () => {
           src={'https://thumbs.dreamstime.com/b/zoo-concept-driver-man-jeep-car-isolated-illustration-219055248.jpg'}>
 
         </Image>
-        <Typography.Title>JEEP</Typography.Title>
+        <Typography.Title>PHONES & PERFUMES</Typography.Title>
         <Space>
           <Badge count={10} dot>
           <MailOutlined style={{fontSize:24}}/>
