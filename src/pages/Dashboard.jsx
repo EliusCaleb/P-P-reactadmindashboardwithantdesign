@@ -200,7 +200,7 @@ function DashboardChart() {
       },
       title: {
         display: true,
-        text: "Jeep Revenue Bar Chart",
+        text: "P&P Revenue Bar Chart",
       },
     },
   };
