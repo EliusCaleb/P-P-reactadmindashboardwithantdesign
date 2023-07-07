@@ -1,11 +1,16 @@
 import React from 'react'
 import {Menu} from 'antd'
 import {AppstoreOutlined,ShoppingCartOutlined,ShopOutlined,UserOutlined} from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 
 const SideMenu = () => {
+   const navigate = useNavigate()
   return (
     <div className='sideMenu'>
       <Menu
+        onClick={(item)=>{
+          navigate(item.key)
+        }}
          items={
           [
             {
