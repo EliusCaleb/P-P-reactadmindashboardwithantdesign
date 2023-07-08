@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import {Menu} from 'antd'
 import {AppstoreOutlined,ShoppingCartOutlined,ShopOutlined,UserOutlined} from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const SideMenu = () => {
+   const location = useLocation()
    const navigate = useNavigate()
+   const [ selectedKeys,setSelectedKeys] = useState('/')
+
+   useEffect(()=>{
+          const pathName=location.pathname
+          setSelectedKeys(pathName)
+   },[location.pathname])
   return (
     <div className='sideMenu'>
       <Menu
+        className='sideMenuVertical'
+        mode='vertical'
         onClick={(item)=>{
           navigate(item.key)
         }}
+        selectedKeys={[selectedKeys,]}
          items={
           [
             {

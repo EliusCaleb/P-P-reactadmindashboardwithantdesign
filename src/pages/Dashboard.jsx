@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Card, Space, Statistic, Table } from "antd";
-import { getOrders, getRevenue } from "../api/data";
+import { getOrders, getRevenue,getCustomers,getInventory } from "../api/data";
 import {
   ShoppingCartOutlined,
   DollarCircleOutlined,
@@ -18,6 +18,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,6 +28,30 @@ ChartJS.register(
   Legend
 );
 const Dashboard = () => {
+    const[orders,setOrders] = useState(0)
+    const[inventory,setInventory] = useState(0)
+    const[customers,setCustomers] = useState(0)
+    const[revenue,setRevenue] = useState(0)
+
+    useEffect(()=>{
+        getOrders().then(
+            (res) =>{
+                setOrders(res.total)
+                setRevenue(res.discountedTotal)
+            }
+        )
+         getCustomers().then(
+            (res) =>{
+                setCustomers(res.total)
+            }
+        )
+        getInventory().then(
+            (res) =>{
+                setInventory(res.total)
+            }
+        )
+         
+    },[])
   return (
     <div>
       <Space size={20} direction="vertical">
@@ -46,7 +71,7 @@ const Dashboard = () => {
               />
             }
             title={"Orders"}
-            value={12345}
+            value={orders}
           />
           <DashboardCard
             icon={
@@ -62,7 +87,7 @@ const Dashboard = () => {
               />
             }
             title={"Inventory"}
-            value={12345}
+            value={inventory}
           />
           <DashboardCard
             icon={
@@ -78,7 +103,7 @@ const Dashboard = () => {
               />
             }
             title={"Customers"}
-            value={12345}
+            value={customers}
           />
           <DashboardCard
             icon={
@@ -94,7 +119,7 @@ const Dashboard = () => {
               />
             }
             title={"Revenue"}
-            value={12345}
+            value={revenue}
           />
         </Space>
         <Space>
@@ -107,6 +132,7 @@ const Dashboard = () => {
 };
 //card on the upperpart of the dashboard
 function DashboardCard({ title, value, icon }) {
+
   return (
     <Card>
       <Space direction="horizontal">
